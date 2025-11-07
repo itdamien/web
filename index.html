@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TechNova Solutions | IT • Robotics • IoT • Internship</title>
+
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- ====== CSS ====== -->
+  <style>
+    /* ===== RESET ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: #0d1117;
+      color: #e6edf3;
+      overflow-x: hidden;
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      background: rgba(20, 24, 31, 0.9);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 60px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid #1f2630;
+    }
+
+    header h1 {
+      color: #00b4d8;
+      font-size: 1.8rem;
+      letter-spacing: 1px;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 25px;
+    }
+
+    nav a {
+      color: #e6edf3;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #00b4d8;
+    }
+
+    /* ===== HERO SECTION ===== */
+    .hero {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      background-image: url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1600&q=80');
+      filter: brightness(0.3);
+      transition: background-image 1.5s ease-in-out;
+      z-index: -1;
+    }
+
+    .hero-content {
+      z-index: 1;
+      color: #fff;
+      max-width: 800px;
+      padding: 0 20px;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    .hero-content h2 {
+      font-size: 3rem;
+      color: #00b4d8;
+      margin-bottom: 15px;
+    }
+
+    .hero-content p {
+      color: #c9d1d9;
+      font-size: 1.1rem;
+      margin-bottom: 25px;
+    }
+
+    .hero-content button {
+      background-color: #00b4d8;
+      color: #fff;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .hero-content button:hover {
+      background-color: #0087a8;
+      transform: scale(1.05);
+    }
+
+    /* ===== SERVICES ===== */
+    .services {
+      padding: 100px 60px;
+      background: #11161d;
+      text-align: center;
+    }
+
+    .services h3 {
+      font-size: 2.3rem;
+      color: #00b4d8;
+      margin-bottom: 50px;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+    }
+
+    .service-card {
+      background: #1b212b;
+      border-radius: 10px;
+      padding: 40px 25px;
+      text-align: center;
+      transition: all 0.4s ease;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+      background: #1f2633;
+      box-shadow: 0 0 25px rgba(0, 180, 216, 0.3);
+    }
+
+    .service-card i {
+      font-size: 2.8rem;
+      color: #00b4d8;
+      margin-bottom: 20px;
+      animation: bounce 2s infinite;
+    }
+
+    .service-card h4 {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+    }
+
+    .service-card p {
+      color: #b0b8c1;
+    }
+
+    /* ===== INTERNSHIP ===== */
+    .internship {
+      background: linear-gradient(145deg, #1a1f28, #10151b);
+      padding: 80px 40px;
+      text-align: center;
+    }
+
+    .internship h3 {
+      color: #00b4d8;
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .internship p {
+      color: #b0b8c1;
+      max-width: 650px;
+      margin: auto;
+      margin-bottom: 30px;
+    }
+
+    .internship button {
+      background-color: #00b4d8;
+      color: #fff;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .internship button:hover {
+      background-color: #0087a8;
+      transform: scale(1.05);
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background-color: #161b22;
+      text-align: center;
+      padding: 25px;
+      color: #7a828e;
+    }
+
+    footer .social i {
+      margin: 0 10px;
+      color: #00b4d8;
+      font-size: 1.3rem;
+      transition: 0.3s;
+    }
+
+    footer .social i:hover {
+      color: #90e0ef;
+    }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      header {
+        padding: 20px 25px;
+      }
+
+      .hero-content h2 {
+        font-size: 2.2rem;
+      }
+
+      .services {
+        padding: 60px 25px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header>
+    <h1>TechNova</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="#internship">Internship</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ===== HERO SECTION ===== -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h2>Empowering Innovation through Technology</h2>
+      <p>We build next-generation IT systems, robotic solutions, IoT automation, and offer internships to shape future innovators.</p>
+      <button id="exploreBtn">Explore Services</button>
+    </div>
+  </section>
+
+  <!-- ===== SERVICES ===== -->
+  <section class="services" id="services">
+    <h3>Our Expertise</h3>
+    <div class="service-grid">
+      <div class="service-card">
+        <i class="fa-solid fa-code"></i>
+        <h4>IT Services</h4>
+        <p>Providing modern web, mobile, and cloud solutions to accelerate your digital transformation.</p>
+      </div>
+      <div class="service-card">
+        <i class="fa-solid fa-robot"></i>
+        <h4>Robotic Solutions</h4>
+        <p>We create intelligent robotic automation systems to improve industrial productivity and precision.</p>
+      </div>
+      <div class="service-card">
+        <i class="fa-solid fa-microchip"></i>
+        <h4>IoT Solutions</h4>
+        <p>Smart IoT platforms that connect and control devices, providing real-time analytics and automation.</p>
+      </div>
+      <div class="service-card">
+        <i class="fa-solid fa-user-graduate"></i>
+        <h4>Internship Program</h4>
+        <p>Gain hands-on experience in emerging technologies with our structured internship programs.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== INTERNSHIP ===== -->
+  <section class="internship" id="internship">
+    <h3>Join Our Internship Program</h3>
+    <p>At TechNova, we believe in learning by doing. Apply for our internship to work on real-world projects in IT, Robotics, and IoT alongside experts.</p>
+    <button id="applyBtn"><a href="signup.html">Apply Now</a></button>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer id="contact">
+    <div class="social">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-linkedin-in"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-github"></i></a>
+    </div>
+    <p>© 2025 TechNova Solutions. All rights reserved.</p>
+  </footer>
+
+  <!-- ===== JAVASCRIPT ===== -->
+  <script>
+    // Smooth Scroll to Services Section
+    document.getElementById("exploreBtn").addEventListener("click", () => {
+      document.getElementById("services").scrollIntoView({ behavior: "smooth" });
+    });
+
+    // Internship Button Action
+    document.getElementById("applyBtn").addEventListener("click", () => {
+      alert("Thank you for your interest! Internship applications will open soon 🚀");
+    });
+
+    // Hero Background Image Slideshow
+    const hero = document.querySelector('.hero::before');
+    const heroSection = document.querySelector('.hero');
+    const images = [
+      "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1504386106331-3e4e71712b38?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1600&q=80",
+      "https://images.unsplash.com/photo-1535223289827-42f1e9919769?auto=format&fit=crop&w=1600&q=80"
+    ];
+    let index = 0;
+
+    setInterval(() => {
+      index = (index + 1) % images.length;
+      heroSection.style.setProperty('--bg', `url(${images[index]})`);
+      heroSection.querySelector(':before');
+      document.querySelector('.hero').style.backgroundImage = `url('${images[index]}')`;
+      document.querySelector('.hero').style.backgroundSize = 'cover';
+      document.querySelector('.hero').style.backgroundPosition = 'center';
+      document.querySelector('.hero').style.transition = 'background-image 1.5s ease-in-out';
+    }, 5000);
+  </script>
+
+</body>
+</html>

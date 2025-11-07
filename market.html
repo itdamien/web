@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TradeX - Online Trading Platform</title>
+  <style>
+    /* ===== Reset & Base ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      background: #0e0e12;
+      color: #f5f5f5;
+      line-height: 1.6;
+    }
+    a {
+      color: #00b4d8;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+    a:hover {
+      color: #90e0ef;
+    }
+
+    /* ===== Navbar ===== */
+    header {
+      background: #121217;
+      padding: 20px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    }
+    header h1 {
+      color: #00b4d8;
+      font-size: 1.6rem;
+    }
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+    }
+    nav ul li {
+      cursor: pointer;
+    }
+
+    /* ===== Hero Section ===== */
+    .hero {
+      text-align: center;
+      padding: 100px 20px;
+      background: linear-gradient(145deg, #121217, #1c1c24);
+    }
+    .hero h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #00b4d8;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      color: #ccc;
+      max-width: 700px;
+      margin: auto;
+    }
+    .hero button {
+      margin-top: 30px;
+      padding: 12px 25px;
+      background: #00b4d8;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .hero button:hover {
+      background: #0090b0;
+    }
+
+    /* ===== Market Section ===== */
+    .market {
+      padding: 60px;
+      background: #14141b;
+    }
+    .market h3 {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 2rem;
+      color: #00b4d8;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+    .card {
+      background: #1e1e26;
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-10px);
+    }
+    .card h4 {
+      color: #00b4d8;
+      margin-bottom: 10px;
+    }
+    .card p {
+      color: #aaa;
+    }
+    .price {
+      font-size: 1.5rem;
+      margin: 10px 0;
+    }
+
+    /* ===== Footer ===== */
+    footer {
+      background: #121217;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: #777;
+      border-top: 1px solid #222;
+    }
+
+    /* ===== JavaScript Effects ===== */
+    .highlight {
+      color: #90e0ef;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== Navbar ===== -->
+  <header>
+    <h1>TradeX</h1>
+    <nav>
+      <ul>
+        <li><a href="market.html">Market</a></li>
+        <li><a href="services.html">services</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ===== Hero Section ===== -->
+  <section class="hero" id="home">
+    <h2>Trade Smarter, Grow Faster</h2>
+    <p>Join thousands of traders using TradeX to monitor real-time prices, execute trades, and grow their portfolios with confidence.</p>
+    <button id="getStartedBtn"><a href="login.php"></a>Get Started</button>
+  </section>
+
+  <!-- ===== Market Section ===== -->
+  <section class="market" id="market">
+    <h3>Live Market Overview</h3>
+    <div class="cards" id="marketCards">
+      <!-- Cards will be inserted by JS -->
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer id="contact">
+    <p>© 2025 TradeX. All rights reserved. Designed by <span class="highlight">You</span>.</p>
+  </footer>
+
+  <!-- ===== JavaScript ===== -->
+  <script>
+    // Sample market data
+    const marketData = [
+      { name: "Bitcoin (BTC)", price: 67250, change: 1.8 },
+      { name: "Ethereum (ETH)", price: 3120, change: -0.9 },
+      { name: "Tesla (TSLA)", price: 252.3, change: 2.1 },
+      { name: "Apple (AAPL)", price: 192.5, change: -0.5 },
+      { name: "Gold (XAU)", price: 1985.3, change: 0.7 },
+    ];
+
+    const marketContainer = document.getElementById("marketCards");
+
+    // Render market cards dynamically
+    function renderMarket() {
+      marketContainer.innerHTML = "";
+      marketData.forEach(asset => {
+        const card = document.createElement("div");
+        card.className = "card";
+        const changeColor = asset.change >= 0 ? "#4ade80" : "#f87171";
+        card.innerHTML = `
+          <h4>${asset.name}</h4>
+          <div class="price">$${asset.price.toLocaleString()}</div>
+          <p style="color:${changeColor};">Change: ${asset.change}%</p>
+        `;
+        marketContainer.appendChild(card);
+      });
+    }
+
+    // Simulate live updates
+    function updatePrices() {
+      marketData.forEach(asset => {
+        const change = (Math.random() - 0.5) * 2;
+        asset.price = +(asset.price + change * 10).toFixed(2);
+        asset.change = +change.toFixed(2);
+      });
+      renderMarket();
+    }
+
+    // Initial render
+    renderMarket();
+    // Update prices every 5 seconds
+    setInterval(updatePrices, 5000);
+
+    // Button interaction
+    document.getElementById("getStartedBtn").addEventListener("click", () => {
+      alert("Welcome to TradeX! Create your trading account today 🚀");
+    });
+  </script>
+</body>
+</html>

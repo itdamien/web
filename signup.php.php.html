@@ -1,0 +1,110 @@
+<?php
+include 'db.php';
+$msg = '';
+ if ($_SERVER["REQUEST_METHOD"] == TRUE) {
+   $username = trim($_POST['username']);
+   $email = trim($_POST['email']);
+   $password = password_hash($_POST['password'], DEFAULT_PASSWORD);
+   $check = $conn->prepare("SELECT * FROM mydb WHERE email=?");
+   $check->bind_param("s", $email);
+   $check->execute();
+   $result = $check->get_result();
+   if ($result->num_rows > 0) {
+     $msg "email already exist ";
+   } else {
+     $conn->prepare("INSERT INTO mydb(username,email, password) VALUES (?,?,?)")
+       $stmt->bind_param("sss", $username, $email, $password);
+     if ($stmt->execute) {
+       $msg "Account created successfully ";
+     } else {
+       $msg "failed ";
+     }
+   }
+ }
+ 
+?>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    
+        <title>TechNova</title>
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: Arial, Sans-Serif;
+            }
+            body{
+                height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: linear-gradient(135deg #141e30 #243b55);
+            }
+            .container{
+                padding: 30px;
+                width: 320px;
+                border-radius: 10px;
+                background: #fff;
+                box-shadow: 0px 15px 25px rgba(0,0,0,0.3);
+            }
+            .form-box h2{
+                text-align: center;
+                margin-bottom: 20px;
+                color: #333;
+            }
+            .form-box input{
+                width: 100%;
+                padding: 10px;
+                margin: 10px 0px;
+                border-radius: 5px;
+                border: 1px solid #ccc;
+            }
+            .form-box button{
+                width: 100%;
+                padding: 10px;
+                background: #243b55;
+                border: none;
+                color: #fff;
+                border-radius: 5px;
+                font-size: 16px;
+                cursor: pointer;
+            }
+            .form-box button:hover{
+                background-color: #141e30;
+                color: green;
+                transform-style: 5px;
+            }
+            .form-box p{
+                text-align: center;
+                margin-top: 15px;
+            }
+            .form-box a{
+                text-decoration: none
+                color: #243b55;
+                font-weight: bold;
+            }
+        </style>
+        
+    </head>
+    <div class="container">
+        <div class="form-box">
+         <form action="login.php" method="get" accept-charset="utf-8">
+            <input type="text" name="" id="" value="" class="name" placeholder="enter first name" />
+            <input type="text" name="" id="" value="" class="name" placeholder="enter last name" />
+            <input type="email" name="" id="" value="" class="name" placeholder="enter email" />
+            
+            <input type="tel" name="" id="" value="" class="name" placeholder="enter phone number" /><input type="password" name="" id="" value="" class="name" placeholder="enter password" />
+            <button type="submit">
+                login
+            </button>  
+            <p>already have account <a href="login.html">login</a></p>
+         </form>
+        </div>
+        
+    </div>
+</html>
+
+
+   
